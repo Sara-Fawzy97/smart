@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Login">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/user_name"
+        android:textSize="25sp"
+        android:layout_marginStart="10dp" />
+
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="238dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:inputType="text|textPersonName"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="30dp"
+        android:autofillHints=""
+        android:layout_marginStart="50dp" tools:targetApi="o"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/password"
+        android:textSize="25sp"
+        android:layout_marginStart="10dp" />
+
+    <EditText
+        android:id="@+id/pass"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:inputType="textPassword"
+        tools:targetApi="o" />
+
+    <TextView
+        android:id="@+id/invalid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="321dp"
+        android:layout_height="79dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Login"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        android:onClick="btn_login"
+        tools:ignore="HardcodedText"
+        android:layout_marginStart="30dp" />
+
+    <TextView
+        android:id="@+id/forget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="@string/forget_password"
+        android:onClick="forgetPassword"
+        />
+
+    <TextView
+        android:id="@+id/sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:text="@string/don_t_have_an_account_sign_up" />
+
+</LinearLayout>
