@@ -21,39 +21,39 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
 
-    EditText user,pass;
-    TextView invalid,sign,forget;
+    EditText user, pass;
+    TextView invalid, sign, forget;
     Button log;
     DatabaseReference ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login);
 
         user = (EditText) findViewById(R.id.userName);
         pass = (EditText) findViewById(R.id.pass);
-        invalid=(TextView)findViewById(R.id.invalid);
+        invalid = (TextView) findViewById(R.id.invalid);
         log = (Button) findViewById(R.id.login);
-        forget=(TextView)findViewById(R.id.forget);
-        sign=(TextView)findViewById(R.id.sign);
+        forget = (TextView) findViewById(R.id.forget);
+        sign = (TextView) findViewById(R.id.sign);
 
-     ref= (DatabaseReference) FirebaseDatabase.getInstance().getReference("Users");
+        ref = (DatabaseReference) FirebaseDatabase.getInstance().getReference("Users");
 
-     //if user forget his password ,move toother page to reset it
-       forget.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               Intent intent= new Intent(Login.this,ForgetPassword.class);
-               startActivity(intent);
-           }
-       });
+        //if user forget his password ,move toother page to reset it
+        forget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Login.this, ForgetPassword.class);
+                startActivity(intent);
+            }
+        });
 
         // move to sign up page
         sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(Login.this,MainActivity.class);
+                Intent intent = new Intent(Login.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -61,8 +61,7 @@ public class Login extends AppCompatActivity {
     }
 
     //when press on login button
-    public void btn_login (View view)
-    {
+    public void btn_login(View view) {
         final String username = user.getText().toString();
         final String password = pass.getText().toString();
 
@@ -72,35 +71,28 @@ public class Login extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 //if the input exists as child for the ref
-                    if (dataSnapshot.child(username).exists())
-                    {Toast.makeText(getApplicationContext()," exists",Toast.LENGTH_SHORT).show();
+                if (dataSnapshot.child(username).exists()) {
+                    Toast.makeText(getApplicationContext(), " exists", Toast.LENGTH_SHORT).show();
 
-                       if(!username.isEmpty())
-                         {
+                    if (!username.isEmpty()) {
                         Info info = dataSnapshot.child(username).getValue(Info.class);
-                           //if the password in data equal the input password
-                            if (info.getPass().equals(password))
-                              {
-                                Toast.makeText(getApplicationContext(),"Log in successfully",Toast.LENGTH_SHORT).show();
-                               }
-                          }
+                        //if the password in data equal the input password
+                        if (info.getPass().equals(password)) {
+                            Toast.makeText(getApplicationContext(), "Log in successfully", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                    //if the input not exists in the firebase
-                    else Toast.makeText(getApplicationContext(),"Not exists",Toast.LENGTH_SHORT).show(); }
+                }
+                //if the input not exists in the firebase
+                else
+                    Toast.makeText(getApplicationContext(), "Not exists", Toast.LENGTH_SHORT).show();
+            }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
-        // call this method to open message box
-       //openDialog();
+
     }
 
-  //  open message box || alter dialog to open bluetooth and wifi
-public void openDialog()
-{
-  BluOrWifi bluOrWifi=new BluOrWifi();
-  bluOrWifi.show(getSupportFragmentManager(),"dialog");
-}
 }

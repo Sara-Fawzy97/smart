@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText  user,email, id, pass;
     Button sign;
-    TextView login,note;
+    TextView login,note,chat;
 DatabaseReference ref;
 
     @Override
@@ -42,6 +42,15 @@ DatabaseReference ref;
         sign=(Button)findViewById(R.id.signUp);
         login=(TextView)findViewById(R.id.to);
         note=(TextView)findViewById(R.id.note);
+        chat=findViewById(R.id.chat);
+
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,chat.class);
+                startActivity(intent);
+            }
+        });
 
         //identify firebase and get it reference
         ref=FirebaseDatabase .getInstance().getReference("Users");
@@ -76,8 +85,12 @@ DatabaseReference ref;
                 if(userGet.isEmpty() ||emailGet.isEmpty()||idGet.isEmpty()||passGet.isEmpty())
                 {note.setText("Please full every information ");}
                 else  //if any of inputs don't matches the patterns
-                    if (!emailGet.matches(email_pattern) || !userGet.matches(userPattern)|| !passGet.matches(passPattern))
-                        note.setText("Invalid ");
+                    if (!emailGet.matches(email_pattern) )//|| !userGet.matches(userPattern)|| !passGet.matches(passPattern))
+                          note.setText("Invalid email ");
+                     else if (!userGet.matches(userPattern))
+                         note.setText("user name should start with UpperCase");
+                     else if (!passGet.matches(passPattern))
+                         note.setText("Password wrong");
                     else {
 //if the input username exists in firebase
                          if(dataSnapshot.child(userGet).exists())
