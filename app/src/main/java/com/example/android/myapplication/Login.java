@@ -35,7 +35,6 @@ public class Login extends AppCompatActivity {
         pass = (EditText) findViewById(R.id.pass);
         invalid = (TextView) findViewById(R.id.invalid);
         log = (Button) findViewById(R.id.login);
-        forget = (TextView) findViewById(R.id.forget);
         sign = (TextView) findViewById(R.id.sign);
 
         ref = (DatabaseReference) FirebaseDatabase.getInstance().getReference("Users");
